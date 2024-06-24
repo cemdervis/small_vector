@@ -22,6 +22,12 @@ option (
   ${_IS_PROJECT_ROOT}
 )
 
+option(
+  GCH_SMALL_VECTOR_INSTALL
+  "Set to ON to add install targets for gch::small_vector."
+  ${_IS_PROJECT_ROOT}
+)
+
 if (GCH_SMALL_VECTOR_ENABLE_TESTS)
   include (CMakeDependentOption)
 
@@ -138,9 +144,11 @@ export (
     gch::
 )
 
-install (
-  FILES
-    LICENSE
-  DESTINATION
-    ${GCH_SMALL_VECTOR_INSTALL_LICENSE_DIR}
-)
+if (GCH_SMALL_VECTOR_INSTALL)
+  install (
+    FILES
+      LICENSE
+    DESTINATION
+      ${GCH_SMALL_VECTOR_INSTALL_LICENSE_DIR}
+  )
+endif()
